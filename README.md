@@ -119,8 +119,10 @@ The rule accepts 3 arguments:
 3. **message** ```function|string|undefined``` optional string to display on rule failure, if function is used the parameters passed will be: 
     ```javascript
 {field:{name:'field name',value:'field value'},rule:{name:'rule name',value:'optional rule value'}}
-```
+```.
+
 Like in the previus example the rules could also be registered via the **registerRules** method that will reset all the existing rules and use the newly specified ones and it's also used to register default validation rules.
+
 This function support 3 notations:
 
 ```javascript
