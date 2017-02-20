@@ -52,7 +52,7 @@ Remember to bind the instace proprieties on your component like so:
 
 see examples/logintest.vue for a complete example.
 
-###Add frontend validation rules
+###Add frontend validation rules to the form:
 This library includes a fronted (javascript check, before actually submitting the form) input validation like the Laravel validate;
 to use it just pass it on the options like so:
 
@@ -72,3 +72,22 @@ The rules, if present, will be valdiate before submitting the form or via the va
 The validate function will return ```true``` if all the validation rules succeeded, an Error object if failed.
 You can validate one field simply by specify it in the vlaidate function (ex: form.validate('email') ).
 The submit function will always return a Promise; if the validation fails it will return an Error object as result.
+
+
+#Validator
+The Validator class handles front-end validation of fields
+
+```javascript
+let objectTovalidate={email:'wrongEmail@.address','password':'thisPasswordIsAccettable'},
+    rulesToVerify={email:'required|email',password:'required|min:4'};
+let validator=new Validator(objectTovalidate,rulesToVerify);
+console.info(validator.validate());
+```
+The validate function will return true on success or an object containing all error messages on fails;
+in this example the error would be:
+
+```javascript
+{
+ email:['The email field is not a valid email value!']
+}
+```
