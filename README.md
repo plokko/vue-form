@@ -97,17 +97,17 @@ The validator class could be expanded adding new validation rules via the static
 ```javascript
 import Validator from './utils/Form/Validator';
 //....define the new rule:
-Validator.registerNewRule('isjojomc',//Name of the rule
+Validator.registerNewRule('isjojofamily',//Name of the rule
                             (string)=>string.match(/(^jo\w+ jo\w+$|^gio\w+ gio\w+$)/i) ,//test the rule (true|false)
-                            (o)=>`${o.field.value}` is not a valid Jojo MC`
+                            (o)=>`'${o.field.value}' is not of the Jojo family tree!`
                         );
                         
-Validator.registerNewRule('urarara',//Name of the rule
-                            (string)=>string.match(/(^jo\w+ jo\w+$|^gio\w+ gio\w+$)/i) ,//test the rule (true|false)
-                            (o)=>`${o.field.value}` is not a valid Jojo MC`
+Validator.registerNewRule('sdcatchphrase',//Name of the rule
+                            (string,n)=>string.match(new RegExp('^u(ra){'+n+',}','i')) ,// 'u' + at least N 'ra' repetitions
+                            (o)=>`${o.field.name} is not a valid Shining Diamond catchphrase!`
                         );
 //....using the new rule...//
-let v=new Validator({name:'Dio Brando'},{name:'required|isjojomc'});
+let v=new Validator({name:'Dio Brando',catchphrase:'mudamudamuda'},{name:'required|isjojofamily',catchphrase:'sdcatchphrase'});//obviusly it will fail
 console.log(v.validate());
 //..
 ```
